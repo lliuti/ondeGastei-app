@@ -1,10 +1,12 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import Main from './pages/Main/index';
+import Create from './pages/Create/index';
 
 const Routes = createAppContainer(
   createSwitchNavigator({
-    Main
+    Main,
+    Create
   //   Main: {
   //     screen: Main,
   //     navigationOptions: {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, StyleSheet, View, Text } from 'react-native';
+import { StatusBar, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons/';
 
 import api from '../../services/api';
 
-export default function Main() {
+export default function Main({ navigation }) {
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -18,8 +18,12 @@ export default function Main() {
 
   return (
     <>
-    <View style={styles.newExpenseContainer}>
-      <FontAwesome5 name='plus' size={36} color='#eee'/>
+    <View style={styles.topContainer}>
+      <TouchableOpacity onPress={() => {
+          navigation.navigate('Create');
+        }}>
+        <FontAwesome5 name='plus' size={42} color='#eee'/>
+      </TouchableOpacity>
     </View>
     <View style={styles.container}>
       {expenses.map(expense => (
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 40,
   },
-  newExpenseContainer: {
+  topContainer: {
     backgroundColor: '#333',
     alignItems: 'center',
     justifyContent: 'center',
