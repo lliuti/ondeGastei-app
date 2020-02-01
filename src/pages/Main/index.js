@@ -29,13 +29,13 @@ export default function Main({ navigation }) {
       {expenses.map(expense => (
         <View key={expense.id} style={styles.expenseBox}>
           <View style={styles.expenseType}>
-            <FontAwesome5 name='utensils' size={26} color='#eee'/>
+            <FontAwesome5 name={expense.type} size={26} color='#eee'/>
           </View>
           <View style={styles.expenseDescription}>
             <Text style={styles.defaultText}>{expense.description}</Text>
           </View>
           <View style={styles.expensePrice}>
-            <Text style={styles.defaultText}>{expense.price}</Text>
+            <Text style={styles.defaultText}>R$ {expense.price}</Text>
           </View>
         </View>
       ))}
@@ -58,35 +58,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#333',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 50,
-    paddingTop: 50 + StatusBar.currentHeight,
+    paddingVertical: 30,
+    paddingTop: 30 + StatusBar.currentHeight,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
   },
   expenseBox: {
-    // flex: 1,
     backgroundColor: '#333',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     elevation: 10,
     marginVertical: 5,
+    borderRadius: 15,
   },
   expenseType: {
-    borderRightColor: '#666',
-    borderRightWidth: 1,
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 15,
   },
   expenseDescription: {
     paddingHorizontal: 20,
-    paddingVertical: 30,
-    borderRightColor: '#666',
-    borderRightWidth: 1,
+    paddingVertical: 5,
   },
   expensePrice: {
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 15,
   },
   defaultText: {
     fontSize: 20,
