@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons/'
+import { StatusBar, StyleSheet, View, Text } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons/';
 
 import api from '../../services/api';
 
 export default function Main() {
-  const [type, setType] = useState('');
-  const [desc, setDesc] = useState('');
-  const [price, setPrice] = useState('');
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -20,11 +17,15 @@ export default function Main() {
   };
 
   return (
+    <>
+    <View style={styles.newExpenseContainer}>
+      <FontAwesome5 name='plus' size={36} color='#eee'/>
+    </View>
     <View style={styles.container}>
       {expenses.map(expense => (
         <View key={expense.id} style={styles.expenseBox}>
           <View style={styles.expenseType}>
-            <FontAwesome5 name='utensils' size={26}/>
+            <FontAwesome5 name='utensils' size={26} color='#eee'/>
           </View>
           <View style={styles.expenseDescription}>
             <Text style={styles.defaultText}>{expense.description}</Text>
@@ -33,26 +34,39 @@ export default function Main() {
             <Text style={styles.defaultText}>{expense.price}</Text>
           </View>
         </View>
-        ))}
-      </View>
+      ))}
+    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#af9',
+    backgroundColor: '#f5f5f5',
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 40,
+  },
+  newExpenseContainer: {
+    backgroundColor: '#333',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 50,
+    paddingTop: 50 + StatusBar.currentHeight,
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
   },
   expenseBox: {
     // flex: 1,
-    backgroundColor: '#bf9',
+    backgroundColor: '#333',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     elevation: 10,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   expenseType: {
     borderRightColor: '#666',
@@ -72,5 +86,6 @@ const styles = StyleSheet.create({
   },
   defaultText: {
     fontSize: 20,
+    color: '#eee',
   },
 });
