@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "OndeGastei-App",
+    "name": "Onde Gastei",
     "slug": "OndeGastei-App",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -14,8 +14,8 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#333"
+      "resizeMode": "cover",
+      "backgroundColor": "#edcd79"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.liuti.OndeGastei" 
+    },
+    "android": {
+      "package": "com.liuti.OndeGastei" 
     }
   }
 }
