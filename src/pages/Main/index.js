@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Alert, StatusBar, StyleSheet, View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons/';
 
 import api from '../../services/api';
@@ -9,12 +9,23 @@ export default function Main({ navigation }) {
 
   useEffect(() => {
     loadExpenses();
+    if (expenses !== []) {
+      getStoredExpenses();
+    };
   }, []);
 
   async function loadExpenses() {
     const response = await api.get('/expenses');
     setExpenses(response.data);
+    await AsyncStorage.setItem('expenses', JSON.stringify(response.data));
   };
+
+  async function getStoredExpenses() {
+    const stored = await AsyncStorage.getItem('expenses');
+    setExpenses(JSON.parse(stored));
+    console.log(stored);
+  };
+  
 
   return (
     <>
